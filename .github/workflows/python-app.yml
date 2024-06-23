@@ -1,6 +1,10 @@
 # This workflow will install Python dependencies, run tests and lint with a single version of Python
 # For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-python
 
+  name: setup-chromedriver
+  uses: nanasess/setup-chromedriver@v2.2.2
+            
+            
 name: Python application
 
 on:
