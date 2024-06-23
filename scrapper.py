@@ -8,9 +8,9 @@ from bs4 import BeautifulSoup
 from time import sleep
 
 # Get data vis selenium
+from webdriver_manager.chrome import ChromeDriverManager
 
-driver = webdriver.Chrome()
-
+driver = webdriver.Chrome(ChromeDriverManager().install())
 
 driver.get("https://neu.insolvenzbekanntmachungen.de/ap/suche.jsf")
 
