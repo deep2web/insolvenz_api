@@ -2,19 +2,14 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.select import Select
-from selenium.webdriver.chrome.options import Options
 
 from bs4 import BeautifulSoup
 
 from time import sleep
 
 # Get data vis selenium
-from webdriver_manager.chrome import ChromeDriverManager
 
-driver = webdriver.Chrome(ChromeDriverManager().install())
-chrome_options = Options()
-chrome_options.add_argument("--headless")
-driver = webdriver.Chrome(options=chrome_options)
+driver = webdriver.Chrome()
 
 driver.get("https://neu.insolvenzbekanntmachungen.de/ap/suche.jsf")
 
