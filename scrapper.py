@@ -7,9 +7,15 @@ from bs4 import BeautifulSoup
 
 from time import sleep
 
+from selenium.webdriver.chrome.options import Options
+
+chrome_options = Options()
+chrome_options.add_argument("--headless")
+driver = webdriver.Chrome(options=chrome_options)
+
 # Get data vis selenium
 
-driver = webdriver.Chrome()
+# driver = webdriver.Chrome()
 
 driver.get("https://neu.insolvenzbekanntmachungen.de/ap/suche.jsf")
 
