@@ -2,6 +2,7 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.select import Select
+from google.cloud import firestore
 
 from bs4 import BeautifulSoup
 
@@ -37,7 +38,8 @@ html_doc = driver.page_source
 
 soup = BeautifulSoup(html_doc, 'html.parser')
 
-
+# Erstellen Sie eine Firestore-Instanz
+db = firestore.Client()
 
 
 # Anzahl der Zeilen in der Tabelle
