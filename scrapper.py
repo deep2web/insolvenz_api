@@ -8,6 +8,10 @@ from bs4 import BeautifulSoup
 
 from time import sleep
 
+
+import os
+from google.cloud import firestore
+
 # Get data vis selenium
 
 driver = webdriver.Chrome()
@@ -38,8 +42,12 @@ html_doc = driver.page_source
 
 soup = BeautifulSoup(html_doc, 'html.parser')
 
+# Setzen Sie die Umgebungsvariable
+os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "/pfad/zu/ihrem/servicekonto-schluessel.json"
+
 # Erstellen Sie eine Firestore-Instanz
 db = firestore.Client()
+
 
 
 # Anzahl der Zeilen in der Tabelle
