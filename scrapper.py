@@ -7,15 +7,10 @@ from bs4 import BeautifulSoup
 
 from time import sleep
 
-from selenium.webdriver.chrome.options import Options
-
-chrome_options = Options()
-chrome_options.add_argument("--headless")
-driver = webdriver.Chrome(options=chrome_options)
-
 # Get data vis selenium
 
-# driver = webdriver.Chrome()
+driver = webdriver.Chrome()
+
 
 driver.get("https://neu.insolvenzbekanntmachungen.de/ap/suche.jsf")
 
@@ -42,10 +37,30 @@ html_doc = driver.page_source
 
 soup = BeautifulSoup(html_doc, 'html.parser')
 
-schuldner_name = soup.find_all('span', class_='withespace')
-for title in schuldner_name:
-    print(title.text)
 
 
+
+# Anzahl der Zeilen in der Tabelle
+num_rows = 48  # Setzen Sie dies auf die tatsächliche Anzahl der Zeilen
+
+for i in range(num_rows):
+    # Generieren Sie die ID dynamisch
+    id_datum = f"tbl_ergebnis:{i}:otx_datum"
+    id_aktenzeichen = f"tbl_ergebnis:{i}:otx_azAkt"
+    id_schuldner = f"tbl_ergebnis:{i}:otx_schuldner"
+    id_sitz = f"tbl_ergebnis:{i}:otx_Sitz"
+
+    # Extrahieren Sie die Daten
+    datum = soup.find('span', {'id': id_datum}).text
+    aktenzeichen = soup.find('span', {'id': id_aktenzeichen}).text
+    schuldner_name = soup.find('span', {'id': id_schuldner}).text
+    sitz = soup.find('span', {'id': id_sitz}).text
+
+    # Drucken Sie die extrahierten Daten
+    print(f"Veröffentlichungsdatum: {datum}")
+    print(f"Aktenzeichen: {aktenzeichen}")
+    print(f"Schuldner Name: {schuldner_name}")
+    print(f"Wohnsitz: {sitz}")
+    print("---")
 sleep(5)
 driver.close()
